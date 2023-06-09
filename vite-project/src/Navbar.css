@@ -1,0 +1,113 @@
+.Navbar {
+    padding: 4rem;
+    color: var(--primary-white);
+    position: absolute;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    gap: 6em;
+    width: 100%;
+}
+
+.Navbar .container {
+    max-width: 90%;
+    margin-inline: auto;
+}
+
+.Navbar .logo img {
+    max-width: 100%;
+}
+
+.Navbar .lists {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3em;
+    list-style: none;
+}
+
+.Navbar .item-list a {
+    position: relative;
+    text-decoration: none;
+    color: var(--primary-white);
+    width: 100%;
+} 
+
+.Navbar .item-list a::after {
+    content: "";
+    position: absolute;
+    width: calc(100% + 4px);
+    height: 1.5px;
+    background-color: var(--primary-white);
+    top: 115%;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    transition: transform 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.Navbar .item-list a:is(:hover,:focus-visible)::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+.Navbar .nav-menu {
+    display: none;
+    
+}
+
+@media screen and (max-width: 1100px){
+    .Navbar {
+        padding: 2rem;
+        justify-content: center;
+        gap:0;
+    }
+
+    .Navbar .nav-menu {
+        display: block;
+        background-color: transparent;
+        border: none;
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        transform: translateY( -50%);
+        z-index: 999;
+    }
+
+    .Navbar .lists {
+        position: absolute;
+        inset: 0;
+        z-index: 99;
+        background-color: var(--primary-white);
+        transform: translateY(-100%);
+        transition: 0.3s cubic-bezier(0.215, 0.61, 0.355, 1);
+        justify-content: flex-end;
+        padding-right: 2em;
+    }
+
+    .Navbar .lists.show {
+        transform: translateY(0%);
+    }
+
+    .Navbar .item-list a {
+        color: var(--primary-black);
+        font-weight: var(--primary-fw);
+    }
+
+    .Navbar .item-list a::after {
+        background-color: var(--primary-black);
+    }
+
+    .Navbar:has(.lists.show) .backdrop {
+        min-height: 100vh;
+        min-height: 100dvh;
+        width: 100vw;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9;
+        background-color: rgba(0,0,0, 0.3);
+    }
+
+    .Navbar:has(.lists.show) .logo {
+        display: none;
+    }
+}
